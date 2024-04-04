@@ -80,9 +80,15 @@ class Translator {
             // find substitutions to make 
             let match;
             while ((match = munchRegExp.exec(translation)) !== null) {
-                if (this.#glossary[match[0].toLowerCase()]) {
-                    const substitution = this.#glossary[match[0].toLowerCase()][0].substitution || match[0];
-                    substitutions.push({ start: match.index, end: munchRegExp.lastIndex, word: match[0], sub: substitution })
+                let entry;
+                if ((entry = this.#glossary[match[0].toLowerCase()])) {
+                    const substitution = entry[0].substitution || match[0];
+                    substitutions.push({
+                        start: match.index,
+                        end: munchRegExp.lastIndex,
+                        word: match[0],
+                        sub: substitution,
+                    });
                 }
             }
 
