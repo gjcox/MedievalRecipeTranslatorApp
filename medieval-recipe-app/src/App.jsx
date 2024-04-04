@@ -6,14 +6,14 @@ import Grid from '@mui/material/Grid';
 import { useState } from 'react';
 import './App.css';
 
-import translateText from './translation/translation-service';
+import Translator from './translation/Translator';
 
 function App() {
   const [sourceText, setSourceText] = useState('');
   const [targetText, setTargetText] = useState('');
 
   const handleTranslate = async () => {
-    const translatedText = await translateText(sourceText);
+    const translatedText = Translator.translateText(sourceText);
     setTargetText(translatedText);
   };
 
