@@ -39,10 +39,6 @@ const word = `${wordBoundary}[${wordChars}]+${wordBoundary}`;
 
 // This function was adapted from https://www.geeksforgeeks.org/javascript-program-to-capitalize-the-first-letter-of-every-sentence-in-a-string/. Accessed 04/04/2024.
 function capitalizeSentences(text) {
-    if (!text.includes('.')) {
-        return text;
-    }
-
     // Split the text into sentences  
     // using regular expressions 
     const sentences = text.split(/\.|\?|!/);
@@ -58,7 +54,7 @@ function capitalizeSentences(text) {
             sentence.trim().slice(1));
 
     // Join the sentences back together 
-    return capitalizedSentences.join('. ') + '.';
+    return capitalizedSentences.join('. ') + (text.trim().slice(-1) == '.' ? '.' : '');
 }
 
 class Translator {
