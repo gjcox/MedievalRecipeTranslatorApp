@@ -1,9 +1,7 @@
-import { HistoryEdu } from '@mui/icons-material';
 import Textarea from '@mui/joy/Textarea';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import { useEffect, useRef, useState, useLayoutEffect } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import './App.css';
 
 import Translator from './translation/Translator';
@@ -36,10 +34,14 @@ function App() {
   }, [])
   /* End of code to help a div masquerade as a text area */
 
-  const handleTranslate = async () => {
+  const handleTranslate = useCallback(async () => {
     const translatedText = Translator.translateText(sourceText);
     setTranslation(translatedText);
-  };
+  }, [sourceText]);
+
+  useEffect(() => {
+    handleTranslate()
+  }, [handleTranslate, sourceText]);
 
   const bibliography = [
     { title: "A Fifteenth Century Cookery Boke", author: "John L. Anderson", year: "1962" },
@@ -55,7 +57,7 @@ function App() {
         <p>This website offers a simple, word-for-word translation of medieval English recipes into more modern English. It is by no means perfect, and is intended to help budding enthusiasts get familiar with some of the common yet esoteric terms that appear in period manuscripts.</p>
         <p>Translated recipes will still require significant interpretation in most cases. For more beginner-friendly recipes online, I suggest websites like <a href="http://www.godecookery.com/">Gode Cookery</a> and <a href="https://medievalcookery.com/index.html">Medieval Cookery</a>.</p>
         <Box sx={{ flexGrow: 1 }}>
-          <Grid container spacing={2} alignItems="flex-start">
+          <Grid container spacing={2} alignItems="flex-start" justifyContent={"center"}>
             <Grid item xs={12} sm={6} ref={sourceGridRef} >
               <Textarea
                 ref={sourceTextAreaRef}
@@ -72,16 +74,6 @@ function App() {
               <div style={{ flexGrow: '1' }} className={textAreaClassName} >
                 {translation}
               </div>
-            </Grid>
-            <Grid item>
-              <Button
-                variant="contained"
-                color="primary"
-                startIcon={<HistoryEdu />}
-                onClick={handleTranslate}
-              >
-                Translate
-              </Button>
             </Grid>
           </Grid>
         </Box>
