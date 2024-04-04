@@ -33,19 +33,17 @@ class Translator {
             });
     }
 
-    #tokeniseText(string) {
-        const initSplit = string.split(" ");
-        // Remove all non-letter characters, ensuring that historial characters are preserved 
-        const words = initSplit.map(word => word.replace(/[^a-zA-ZÞ-]/g, ''));
-        return words
-    }
-
     translateText(text) {
-        const tokens = this.#tokeniseText(text);
-        const translatedTokens =  tokens.map((token) =>  
-            this.#glossary[token.toLowerCase()] && this.#glossary[token.toLowerCase()][0].substitution || 
-            token );
-        return translatedTokens.join(" ")
+        const wordRegExp = RegExp(/[a-zA-ZÞ-]+/g);
+        var translation = text.slice(); 
+        let match; 
+        while ((match = wordRegExp.exec(translation)) !== null) {
+            if (this.#glossary[match[0].toLowerCase()]) {
+                const substitution = this.#glossary[match[0].toLowerCase()][0].substitution || match[0]; 
+                translation = translation.slice(0, match.index) + substitution + translation.slice(wordRegExp.lastIndex);
+            }
+        }
+        return translation; 
     }
 }
 
