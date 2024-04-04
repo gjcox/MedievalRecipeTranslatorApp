@@ -28,8 +28,15 @@ function buildGlossary() {
     });
 }
 
-const expectedChars = "\\wþÞ-";
-const word = `[${expectedChars}]+`;
+// the default \w and \b only work for the Latin alphabet, so I have created my own equivalents
+const wordChars = "\\wþÞ-";
+const wordBoundary =
+    `(^(?=[${wordChars}])|` +
+    `(?<=[^${wordChars}])(?=[${wordChars}])|` +
+    `(?<=[${wordChars}])(?=[^${wordChars}])|` +
+    `(?<=[${wordChars}])$)`;
+const word = `${wordBoundary}[${wordChars}]+${wordBoundary}`;
+
 
 class Translator {
     #glossary;
@@ -40,8 +47,7 @@ class Translator {
             .then(glossary => {
                 this.#glossary = glossary;
                 this.#maxMunchLimit = glossary.maxMunchLimit;
-                console.log(this.#glossary['for þe schullys'])
-                console.log(this.#maxMunchLimit)
+                console.log("Glossary built");
             });
     }
 
@@ -49,14 +55,14 @@ class Translator {
         var translation = text.slice();
 
         for (let munchSize = this.#maxMunchLimit; munchSize > 0; munchSize--) {
-            const munchRegExp = RegExp(`\\b${word}\\b(\\s+${word}){${munchSize - 1}}`, 'g');
+            const munchRegExp = RegExp(`${word}(\\s+${word}){${munchSize - 1}}`, 'g');
 
             let match;
             while ((match = munchRegExp.exec(translation)) !== null) {
                 if (this.#glossary[match[0].toLowerCase()]) {
                     const substitution = this.#glossary[match[0].toLowerCase()][0].substitution || match[0];
                     translation = translation.slice(0, match.index) + substitution + translation.slice(munchRegExp.lastIndex);
-                    console.log(`${match[0]} -> ${substitution}: ${translation}`)
+                    console.log(`"${match[0]}" -> "${substitution}": ${translation}`)
                 }
             }
         }
