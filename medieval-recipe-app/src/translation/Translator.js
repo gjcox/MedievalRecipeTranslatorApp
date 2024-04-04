@@ -56,14 +56,24 @@ class Translator {
 
         for (let munchSize = this.#maxMunchLimit; munchSize > 0; munchSize--) {
             const munchRegExp = RegExp(`${word}(\\s+${word}){${munchSize - 1}}`, 'g');
+            const substitutions = [];
 
+            // find substitutions to make 
             let match;
             while ((match = munchRegExp.exec(translation)) !== null) {
                 if (this.#glossary[match[0].toLowerCase()]) {
                     const substitution = this.#glossary[match[0].toLowerCase()][0].substitution || match[0];
-                    translation = translation.slice(0, match.index) + substitution + translation.slice(munchRegExp.lastIndex);
-                    console.log(`"${match[0]}" -> "${substitution}": ${translation}`)
+                    substitutions.push({ start: match.index, end: munchRegExp.lastIndex, word: match[0], sub: substitution })
                 }
+            }
+
+            // apply substitutions 
+            // N.B. substitutions should not be applied within the above while loop 
+            let offset = 0;
+            for (let { start, end, word, sub } of substitutions) {
+                translation = translation.slice(0, start + offset) + sub + translation.slice(end + offset);
+                console.log(`"${word}" -> "${sub}": ${translation}`);
+                offset += sub.length - word.length;
             }
         }
 
