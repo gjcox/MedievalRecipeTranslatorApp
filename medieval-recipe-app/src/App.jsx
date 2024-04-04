@@ -71,7 +71,7 @@ function App() {
             </Grid>
           </Grid>
         </Box>
-        <p>The glossary used by this website was taken from <a href="http://www.godecookery.com/glossary/glossary.htm">Gode Cookery</a>, originally compiled by James L. Matterer from the following sources:</p>
+        <p>The glossary used by this website was built on one taken from <a href="http://www.godecookery.com/glossary/glossary.htm">Gode Cookery</a>, originally compiled by James L. Matterer from the following sources:</p>
         {bibliography.map((citation, i) => <p key={i} className='citation'><i>{citation.title}</i>. {citation.author}, {citation.year}.</p>)}
       </div>
       <footer>

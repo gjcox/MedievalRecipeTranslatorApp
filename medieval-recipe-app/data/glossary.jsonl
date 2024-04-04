@@ -48,7 +48,7 @@
 {"plaintext": "kytte", "meanings": [{"substitution": "cut"}]}
 {"plaintext": "kyttest", "meanings": [{"substitution": "cut"}]}
 {"plaintext": "kyttyng", "meanings": [{"substitution": "cutting"}]}
-{"plaintext": "faire", "meanings": [{"substitution": "see Fayre"}]}
+{"plaintext": "faire", "meanings": [{"substitution": "clean"}, {"substitution": "nice"}, {"substitution": "fairly good"}, {"substitution": "fairly large"}, {"substitution": "moderate-sized"}, {"substitution": "pretty"}, {"substitution": "fresh"}, {"substitution": "etc"}]}
 {"plaintext": "farce", "meanings": [{"substitution": "stuff"}]}
 {"plaintext": "farced", "meanings": [{"substitution": "stuffed"}]}
 {"plaintext": "farcyd", "meanings": [{"substitution": "stuffed"}]}
@@ -757,14 +757,15 @@
 {"plaintext": "amodyn", "meanings": [{"substitution": "wheat starch", "note": "used to thicken sauces. Gerard reports that a type of spelt called Triticeum Amyleum, Amyleum Frumentum, or starch corn, was grown for just this purpose"}]}
 {"plaintext": "amole", "meanings": [{"substitution": "apple"}]}
 {"plaintext": "amydon", "meanings": [{"substitution": "wheat starch", "note": "used to thicken sauces. Gerard reports that a type of spelt called Triticeum Amyleum, Amyleum Frumentum, or starch corn, was grown for just this purpose"}]}
-{"plaintext": "an", "meanings": [{"substitution": "almost always means \"and.\""}]}
-{"plaintext": "and", "meanings": [{"substitution": "sometimes can mean \"if.\""}]}
+{"plaintext": "an", "meanings": [{"substitution": "and", "note": "almost always means \"and\""}]}
+{"plaintext": "and", "meanings": [{"substitution": "and"}, {"substitution": "if", "note": "sometimes can mean \"if\""}]}
 {"plaintext": "aneys", "meanings": [{"substitution": "anise"}, {"substitution": "aniseed"}]}
 {"plaintext": "anys", "meanings": [{"substitution": "anise"}, {"substitution": "aniseed"}]}
 {"plaintext": "anyse", "meanings": [{"substitution": "anise"}, {"substitution": "aniseed"}]}
 {"plaintext": "angeylles", "meanings": [{"substitution": "eels"}]}
 {"plaintext": "angoyles", "meanings": [{"substitution": "eels"}]}
 {"plaintext": "ynowe", "meanings": [{"substitution": "enough"}, {"substitution": "done"}, {"substitution": "suitable"}]}
+{"plaintext": "yolkes", "meanings": [{"substitution": "yolks"}]}
 {"plaintext": "yoyse", "meanings": [{"substitution": "juice"}]}
 {"plaintext": "y-parede", "meanings": [{"substitution": "pared"}]}
 {"plaintext": "y-peyntid", "meanings": [{"substitution": "painted"}]}
