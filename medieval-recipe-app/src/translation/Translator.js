@@ -1,6 +1,6 @@
 function buildGlossary() {
     return new Promise((resolve, reject) => {
-        fetch('data/glossary.jsonl')
+        fetch('/glossary.jsonl')
             .then(response => response.text())
             .then(text => {
                 const glossary = { maxMunchLimit: 0 };
