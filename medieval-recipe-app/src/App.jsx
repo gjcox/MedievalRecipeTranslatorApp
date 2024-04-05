@@ -2,8 +2,8 @@ import Textarea from '@mui/joy/Textarea';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import './App.css';
 
+import './App.css';
 import Translation from './translation/Translation';
 import Translator from './translation/Translator';
 
@@ -11,6 +11,7 @@ function App() {
   // Source is the input text to be translated
   const [sourceText, setSourceText] = useState('');
   const [translation, setTranslation] = useState('');
+  const [glossaryEntry, setGlossaryEntry] = useState(<></>);
 
   /* The output code is in a div masquerading as a text area, and this 
    * code ensures it matches the height of actual text area used as the 
@@ -37,8 +38,13 @@ function App() {
 
   const handleTranslate = useCallback(async () => {
     const translationArray = Translator.translateTextToArray(sourceText);
-
-    setTranslation(<Translation translationArray={translationArray} />);
+    setTranslation(
+      <Translation
+        now={Date.now()}
+        translationArray={translationArray}
+        setGlossaryEntry={setGlossaryEntry}
+      />
+    );
   }, [sourceText]);
 
   useEffect(() => {
@@ -59,7 +65,7 @@ function App() {
         <p>This website offers a simple, word-for-word translation of medieval English recipes into more modern English. It is by no means perfect, and is intended to help budding enthusiasts get familiar with some of the common yet esoteric terms that appear in period manuscripts.</p>
         <p>Translated recipes will still require significant interpretation in most cases. For more beginner-friendly recipes online, I suggest websites like <a href="http://www.godecookery.com/">Gode Cookery</a> and <a href="https://medievalcookery.com/index.html">Medieval Cookery</a>.</p>
         <Box sx={{ flexGrow: 1 }}>
-          <Grid container spacing={2} alignItems="flex-start" justifyContent={"center"}>
+          <Grid container spacing={2} alignItems="flex-start" justifyContent={"flex-end"}>
             <Grid item xs={12} sm={6} ref={sourceGridRef} >
               <Textarea
                 ref={sourceTextAreaRef}
@@ -77,6 +83,7 @@ function App() {
                 {translation}
               </div>
             </Grid>
+            <Grid item xs={12} md={6}>{glossaryEntry}</Grid>
           </Grid>
         </Box>
         <p>The glossary used by this website was built on one taken from <a href="http://www.godecookery.com/glossary/glossary.htm">Gode Cookery</a>, originally compiled by James L. Matterer from the following sources:</p>

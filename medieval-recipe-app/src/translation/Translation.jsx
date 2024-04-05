@@ -1,27 +1,38 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
-function ClickableSubstitution({ word, meanings }) {
+import GlossaryEntry from './GlossaryEntry';
+
+function ClickableSubstitution({ word, meanings, setGlossaryEntry }) {
     ClickableSubstitution.propTypes = {
         word: PropTypes.string,
         meanings: PropTypes.arrayOf(PropTypes.object),
+        setGlossaryEntry: PropTypes.func,
     }
+    const [substitution, setSubstitution] = useState(meanings[0].substitution);
+
     const handleClick = () => {
-        // TODO implement something better
+        setGlossaryEntry(<GlossaryEntry
+            word={word}
+            meanings={meanings}
+            setSubstitution={setSubstitution}
+        />);
         console.log(`${word} -> ${meanings[0].substitution}`);
     }
 
-    return <a
-        href='#'
-        onClick={(e) => { e.preventDefault(); handleClick(); }}
-    >
-        {meanings[0].substitution}
-    </a>
+    return (
+        <a href='#' onClick={(e) => { e.preventDefault(); handleClick(); }} >
+            {substitution}
+        </a>
+    );
 }
 
-export default function Translation({ translationArray }) {
+export default function Translation({ now, translationArray, setGlossaryEntry }) {
     Translation.propTypes = {
+        now: PropTypes.number,
         translationArray: PropTypes.arrayOf(
             PropTypes.oneOfType([PropTypes.string, PropTypes.object])),
+        setGlossaryEntry: PropTypes.func,
     }
 
     const gridItems = translationArray.map((x, i) => {
@@ -31,11 +42,12 @@ export default function Translation({ translationArray }) {
             const { start, end, word, meanings } = x;
             return (
                 <ClickableSubstitution
-                    key={i}
+                    key={`${now}.${i}`}
                     start={start}
                     end={end}
                     word={word}
                     meanings={meanings}
+                    setGlossaryEntry={setGlossaryEntry}
                 />
             );
         }

@@ -39,3 +39,13 @@ footer>p {
 #translationDiv>p>a:hover {
   font-weight: bold;
 }
+
+#GlossaryEntry>.meaning {
+  border-bottom-style: solid;
+  border-bottom-color: grey;
+  border-bottom-width: 1px;
+}
+
+#GlossaryEntry h3 {
+  margin-top: 0px;
+}
