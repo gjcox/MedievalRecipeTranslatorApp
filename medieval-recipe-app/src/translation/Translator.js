@@ -110,10 +110,7 @@ class Translator {
 
                             /* add the glossary entry of a word or phrase to be 
                              * substituted */
-                            newElement.push({
-                                word: match[0],
-                                meanings: entry,
-                            });
+                            newElement.push({ word: match[0], meanings: entry });
                             prevEnd = end;
                         }
                     }
