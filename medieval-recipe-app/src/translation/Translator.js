@@ -57,6 +57,17 @@ function capitalizeSentences(text) {
     return capitalizedSentences.join('. ') + (text.trim().slice(-1) == '.' ? '.' : '');
 }
 
+function translationListToString(translationArray) {
+    const translation = translationArray.map(x => {
+        if (typeof x === "string") {
+            return x;
+        } else {
+            return x.meanings[0].substitution || x.word;
+        }
+    }).join("");
+    return capitalizeSentences(translation);
+}
+
 class Translator {
     #glossary;
     #maxMunchLimit
@@ -71,40 +82,49 @@ class Translator {
     }
 
     translateText(text) {
+        return translationListToString(this.translateTextToArray(text));
+    }
+
+    translateTextToArray(text) {
+        const output = [];
         var translation = text.slice();
 
         for (let munchSize = this.#maxMunchLimit; munchSize > 0; munchSize--) {
             const munchRegExp = RegExp(`${word}(\\s+${word}){${munchSize - 1}}`, 'g');
-            const substitutions = [];
+            output.length = 0;
 
             // find substitutions to make 
             let match;
+            let prevEnd = 0;
             while ((match = munchRegExp.exec(translation)) !== null) {
                 let entry;
                 if ((entry = this.#glossary[match[0].toLowerCase()])) {
-                    const substitution = entry[0].substitution || match[0];
-                    substitutions.push({
-                        start: match.index,
-                        end: munchRegExp.lastIndex,
+                    const [start, end] = [match.index, munchRegExp.lastIndex]
+                    // add the text between substitutions 
+                    output.push(translation.slice(prevEnd, start));
+
+                    /* add the glossary entry of a word or phrase to be 
+                     * substituted, with metadata */
+                    output.push({
+                        start: start,
+                        end: end,
                         word: match[0],
-                        sub: substitution,
+                        meanings: entry,
                     });
+                    prevEnd = end;
                 }
             }
+            // add any text after the last substitution
+            output.push(translation.slice(prevEnd));
 
-            // apply substitutions 
-            // N.B. substitutions should not be applied within the above while loop 
-            let offset = 0;
-            for (let { start, end, word, sub } of substitutions) {
-                translation = translation.slice(0, start + offset) + sub + translation.slice(end + offset);
-                // console.log(`"${word}" -> "${sub}": ${translation}`);
-                offset += sub.length - word.length;
-            }
+            // build a translation with the latest substitutions 
+            translation = translationListToString(output);
         }
 
-        translation = capitalizeSentences(translation);
-        return translation;
+        return output;
     }
+
+
 }
 
 export default new Translator(); 
