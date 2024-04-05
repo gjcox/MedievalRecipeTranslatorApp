@@ -35,3 +35,7 @@ footer>p {
 #translationDiv>p {
   margin: 0;
 }
+
+#translationDiv>p>a:hover {
+  font-weight: bold;
+}
