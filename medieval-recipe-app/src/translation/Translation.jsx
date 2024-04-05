@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-import GlossaryEntry from './GlossaryEntry';
+import GlossaryEntry from './GlossaryEntry.jsx';
 
 function ClickableSubstitution({ word, meanings, setGlossaryEntry }) {
     ClickableSubstitution.propTypes = {

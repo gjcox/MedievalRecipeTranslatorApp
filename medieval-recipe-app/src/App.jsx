@@ -4,8 +4,8 @@ import Grid from '@mui/material/Grid';
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 import './App.css';
-import Translation from './translation/Translation';
-import Translator from './translation/Translator';
+import Translation from './translation/Translation.jsx';
+import Translator from './translation/Translator.js';
 
 function App() {
   // Source is the input text to be translated
