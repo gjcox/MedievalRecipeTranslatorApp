@@ -93,22 +93,23 @@ class Translator {
 
         for (let munchSize = this.#maxMunchLimit; munchSize > 0; munchSize--) {
             const munchRegExp = RegExp(`${word}(\\s+${word}){${munchSize - 1}}`, 'g');
-
+            const splices = [];
             output.forEach((element, i) => {
                 if (typeof (element) === "string") {
                     const newElement = [];
-                    // find substitutions to make 
                     let match;
                     let prevEnd = 0;
+                    // find all phrases of |munchSize| words 
                     while ((match = munchRegExp.exec(element)) !== null) {
                         let entry;
+                        // find substitutions to make 
                         if ((entry = this.#glossary[match[0].toLowerCase()])) {
                             const [start, end] = [match.index, munchRegExp.lastIndex]
                             // add the text between substitutions 
                             newElement.push(element.slice(prevEnd, start));
 
                             /* add the glossary entry of a word or phrase to be 
-                             * substituted, with metadata */
+                             * substituted */
                             newElement.push({
                                 word: match[0],
                                 meanings: entry,
@@ -119,9 +120,18 @@ class Translator {
                     // add any text after the last substitution
                     newElement.push(element.slice(prevEnd));
 
-                    output.splice(i, 1, ...newElement);
+                    // add the substitution to the queue 
+                    splices.push({ i, newElement })
                 }
+
             });
+
+            // perform the substitutions of source phrases of |munchSize| words 
+            let offset = 0;
+            for (let { i, newElement } of splices) {
+                output.splice(i + offset, 1, ...newElement);
+                offset += newElement.length - 1;
+            }
         }
         return output;
     }
