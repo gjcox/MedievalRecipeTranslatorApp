@@ -62,7 +62,12 @@ function App() {
     <div className="App">
       <div id="AppBody">
         <h1>Medieval Recipe Translator</h1>
-        <p>This website offers a simple, word-for-word translation of medieval English recipes into more modern English. It is by no means perfect, and is intended to help budding enthusiasts get familiar with some of the common yet esoteric terms that appear in period manuscripts.</p>
+        <p>
+          This website offers a simple, word-for-word translation of medieval English recipes into more modern English.
+          It is by no means perfect, and is intended to help budding enthusiasts get familiar with some of the common yet esoteric terms that appear in period manuscripts.
+          For archaic words that are not translated, it is sometimes possible to correctly guess the meaning by simply treating the word as a mispelling, e.g. &quot;whyte&quot; becomes &quot;white&quot;. 
+          Also note that reading the thorn character (Þ, þ) as &quot;th&quot; can often make a word understandable, e.g. &quot;þe&quot; becomes &quot;the&quot;.
+        </p>
         <p>Translated recipes will still require significant interpretation in most cases. For more beginner-friendly recipes online, I suggest websites like <a href="http://www.godecookery.com/">Gode Cookery</a> and <a href="https://medievalcookery.com/index.html">Medieval Cookery</a>.</p>
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={2} alignItems="flex-start" justifyContent={"flex-end"}>
