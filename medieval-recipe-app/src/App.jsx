@@ -4,6 +4,7 @@ import Grid from '@mui/material/Grid';
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import './App.css';
 
+import Translation from './translation/Translation';
 import Translator from './translation/Translator';
 
 function App() {
@@ -35,8 +36,9 @@ function App() {
   /* End of code to help a div masquerade as a text area */
 
   const handleTranslate = useCallback(async () => {
-    const translatedText = Translator.translateText(sourceText);
-    setTranslation(translatedText);
+    const translationArray = Translator.translateTextToArray(sourceText);
+
+    setTranslation(<Translation translationArray={translationArray} />);
   }, [sourceText]);
 
   useEffect(() => {
@@ -71,7 +73,7 @@ function App() {
               />
             </Grid>
             <Grid item xs={12} sm={6} style={{ minHeight: `${textAreaHeight}px`, display: 'flex' }}>
-              <div style={{ flexGrow: '1' }} className={textAreaClassName} >
+              <div id="translationDiv" className={textAreaClassName} >
                 {translation}
               </div>
             </Grid>

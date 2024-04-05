@@ -3,11 +3,11 @@
   margin: 0 2em;
   display: flex;
   flex-direction: column;
-  flex: 1;  
+  flex: 1;
 }
 
 #AppBody {
-  flex: 1;  
+  flex: 1;
 }
 
 .citation {
@@ -22,4 +22,16 @@ footer {
 footer>p {
   margin: 2px 0;
   text-align: center;
+}
+
+#translationDiv {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  word-wrap: break-word;
+}
+
+#translationDiv>p {
+  margin: 0;
 }
