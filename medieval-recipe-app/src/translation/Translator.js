@@ -86,43 +86,47 @@ class Translator {
     }
 
     translateTextToArray(text) {
-        const output = [];
-        var translation = text.slice();
+        /* If there are no substitutions to make, output will not change.
+         * If there are, then it will be a mixed array of strings and 
+         * {word, meanings} objects. */
+        const output = [text.slice()];
 
         for (let munchSize = this.#maxMunchLimit; munchSize > 0; munchSize--) {
             const munchRegExp = RegExp(`${word}(\\s+${word}){${munchSize - 1}}`, 'g');
-            output.length = 0;
 
-            // find substitutions to make 
-            let match;
-            let prevEnd = 0;
-            while ((match = munchRegExp.exec(translation)) !== null) {
-                let entry;
-                if ((entry = this.#glossary[match[0].toLowerCase()])) {
-                    const [start, end] = [match.index, munchRegExp.lastIndex]
-                    // add the text between substitutions 
-                    output.push(translation.slice(prevEnd, start));
+            output.forEach((element, i) => {
+                if (typeof (element) === "string") {
+                    const newElement = [];
+                    // find substitutions to make 
+                    let match;
+                    let prevEnd = 0;
+                    while ((match = munchRegExp.exec(element)) !== null) {
+                        let entry;
+                        if ((entry = this.#glossary[match[0].toLowerCase()])) {
+                            const [start, end] = [match.index, munchRegExp.lastIndex]
+                            // add the text between substitutions 
+                            newElement.push(element.slice(prevEnd, start));
 
-                    /* add the glossary entry of a word or phrase to be 
-                     * substituted, with metadata */
-                    output.push({
-                        start: start,
-                        end: end,
-                        word: match[0],
-                        meanings: entry,
-                    });
-                    prevEnd = end;
+                            /* add the glossary entry of a word or phrase to be 
+                             * substituted, with metadata */
+                            newElement.push({
+                                word: match[0],
+                                meanings: entry,
+                            });
+                            prevEnd = end;
+                        }
+                    }
+                    // add any text after the last substitution
+                    newElement.push(element.slice(prevEnd));
+
+                    output.splice(i, 1, ...newElement);
                 }
-            }
-            // add any text after the last substitution
-            output.push(translation.slice(prevEnd));
-
-            // build a translation with the latest substitutions 
-            translation = translationListToString(output);
+            });
         }
-
         return output;
     }
+
+
 
 
 }

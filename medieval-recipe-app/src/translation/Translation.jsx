@@ -39,12 +39,10 @@ export default function Translation({ now, translationArray, setGlossaryEntry })
         if (typeof x === "string") {
             return x;
         } else {
-            const { start, end, word, meanings } = x;
+            const { word, meanings } = x;
             return (
                 <ClickableSubstitution
                     key={`${now}.${i}`}
-                    start={start}
-                    end={end}
                     word={word}
                     meanings={meanings}
                     setGlossaryEntry={setGlossaryEntry}
