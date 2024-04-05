@@ -1,6 +1,7 @@
 function buildGlossary() {
+    const URL = (import.meta.env.BASE_URL + 'glossary.jsonl')
     return new Promise((resolve, reject) => {
-        fetch('/glossary.jsonl')
+        fetch(URL)
             .then(response => response.text())
             .then(text => {
                 const glossary = { maxMunchLimit: 0 };
