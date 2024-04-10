@@ -46,7 +46,7 @@
 {"plaintext": "allemaundys", "meanings": [{"substitution": "almonds"}]}
 {"plaintext": "almandys", "synonymOf": "allemaundys"}
 {"plaintext": "almaun", "meanings": [{"substitution": "almond"}]}
-{"plaintext": "almaund mylke", "meanings": [{"substitution": "ground almonds mixed with broth", "note": "water, or other liquid"}]}
+{"plaintext": "almaund mylke", "synonymOf": "mylke of almaudys"}
 {"plaintext": "almaunde", "synonymOf": "almaun"}
 {"plaintext": "almaundes", "synonymOf": "allemaundys"}
 {"plaintext": "almaundis", "synonymOf": "allemaundys"}
@@ -663,7 +663,7 @@
 {"plaintext": "myce", "synonymOf": "maumenye"}
 {"plaintext": "myced", "synonymOf": "maumenye"}
 {"plaintext": "mylke", "meanings": [{"substitution": "milk"}]}
-{"plaintext": "mylke of almaudys", "meanings": [{"substitution": "almond milk"}]}
+{"plaintext": "mylke of almaudys", "meanings": [{"substitution": "almond milk", "note": "unlike modern almond milk this could be made with broth rather than water, or sometimes other liquids"}]}
 {"plaintext": "myntes", "meanings": [{"substitution": "mint leaves"}]}
 {"plaintext": "myt", "meanings": [{"substitution": "might"}, {"substitution": "mayest"}]}
 {"plaintext": "myte", "synonymOf": "myt"}
