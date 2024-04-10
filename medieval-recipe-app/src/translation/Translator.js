@@ -1,23 +1,48 @@
 function buildGlossary() {
     const URL = (import.meta.env.BASE_URL + 'glossary.jsonl')
     return new Promise((resolve, reject) => {
+
+
         fetch(URL)
             .then(response => response.text())
             .then(text => {
                 const glossary = { maxMunchLimit: 0 };
+
+                // Add entry to glossary, merging entries in the case of a duplicate plaintext
+                function addEntry(plaintext, meanings) {
+                    glossary[plaintext] = (glossary[plaintext] ?? []).concat(meanings ?? []);
+                }
+
                 // Split the glossary file into lines
                 const lines = text.trim().split('\n');
 
+                const awaitingSynonyms = [];
+
                 // Parse each line as JSON and add an entry to the glossary
                 const entries = lines.map(line => JSON.parse(line));
-                let nWords
-                entries.forEach(entry => {
-                    glossary[entry.plaintext] = entry.meanings
-
-                    if ((nWords = entry.plaintext.split(" ").length) > glossary.maxMunchLimit) {
-                        glossary.maxMunchLimit = nWords;
+                for (let entry of entries) {
+                    // Track the longest phrase length in the glossary, to be used in translation 
+                    const nPlaintextWords = entry.plaintext.split(" ").length;
+                    if (nPlaintextWords > glossary.maxMunchLimit) {
+                        glossary.maxMunchLimit = nPlaintextWords;
                     }
-                });
+
+                    // Track synonyms to be updated later 
+                    if (Object.prototype.hasOwnProperty.call(entry, 'synonymOf')) {
+                        awaitingSynonyms.push(entry);
+                    }
+
+                    addEntry(entry.plaintext, entry.meanings);
+                }
+
+                // Add missing meanings for synonym entries 
+                for (let synonymEntry of awaitingSynonyms) {
+                    if (!glossary[synonymEntry.plaintext]) {
+                        console.warn(`${synonymEntry.plaintext} expected to be a synonym of ${synonymEntry.synonymOf}, but that is not in the glossary.`)
+                    } else {
+                        addEntry(synonymEntry.plaintext, glossary[synonymEntry.synonymOf]);
+                    }
+                }
 
                 resolve(glossary);
             })
