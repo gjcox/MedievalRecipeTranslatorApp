@@ -138,6 +138,9 @@ class Translator {
                              * substituted */
                             newElement.push({ word: match[0], meanings: entry });
                             prevEnd = end;
+                        } else {
+                            // ensure that all substrings are checked 
+                            munchRegExp.lastIndex = match.index + 1;
                         }
                     }
                     // add any text after the last substitution
