@@ -26,6 +26,8 @@ export default function GlossaryEntry({ word, meanings, setSubstitution }) {
 
         </Grid >));
 
+    const noMeanings = <Grid item xs={12}><i>empty glossary entry - no known meanings</i></Grid>;
+
     return (
         <Grid
             container
@@ -35,7 +37,7 @@ export default function GlossaryEntry({ word, meanings, setSubstitution }) {
             alignItems="flex-start"
         >
             <Grid item><h3>{word.toLowerCase()}</h3></Grid>
-            {meaningItems}
+            {meaningItems.length > 0 ? meaningItems : noMeanings}
         </Grid>
     );
 }

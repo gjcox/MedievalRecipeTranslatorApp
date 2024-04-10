@@ -9,7 +9,8 @@ function ClickableSubstitution({ word, meanings, setGlossaryEntry }) {
         meanings: PropTypes.arrayOf(PropTypes.object),
         setGlossaryEntry: PropTypes.func,
     }
-    const [substitution, setSubstitution] = useState(meanings[0].substitution);
+    const defaultSubstitution = meanings[0] && meanings[0].substitution ? meanings[0].substitution : word
+    const [substitution, setSubstitution] = useState(defaultSubstitution);
 
     const handleClick = () => {
         setGlossaryEntry(<GlossaryEntry
@@ -17,7 +18,6 @@ function ClickableSubstitution({ word, meanings, setGlossaryEntry }) {
             meanings={meanings}
             setSubstitution={setSubstitution}
         />);
-        console.log(`${word} -> ${meanings[0].substitution}`);
     }
 
     return (
