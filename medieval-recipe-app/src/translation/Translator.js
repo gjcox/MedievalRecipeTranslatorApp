@@ -47,9 +47,9 @@ function buildGlossary() {
                 resolve(glossary);
             })
             .catch(error => {
-                const msg = 'Error reading JSONL file:' + error;
+                const msg = 'Error reading JSONL file: ' + error;
                 console.error(msg);
-                reject(msg);
+                reject({});
             });
     });
 }
@@ -104,6 +104,12 @@ class Translator {
                 this.#glossary = glossary;
                 this.#maxMunchLimit = glossary.maxMunchLimit;
                 console.log("Glossary built");
+            })
+            .catch(() => {
+                const msg = `Glossary could not be built`;
+                console.error(msg);
+                this.#glossary = {}; 
+                this.#maxMunchLimit = 1; 
             });
     }
 
