@@ -253,6 +253,7 @@
 {"plaintext": "buf", "synonymOf": "beofe"}
 {"plaintext": "buff", "synonymOf": "beofe"}
 {"plaintext": "bugloss", "synonymOf": "alkanet"}
+{"plaintext": "buille", "synonymOf": "seeth"}
 {"plaintext": "bukkenade", "meanings": [{"substitution": "a meat stew", "note": "(most often veal), usually including egg yolks"}]}
 {"plaintext": "buknade", "synonymOf": "bukkenade"}
 {"plaintext": "bullace", "synonymOf": "bolas"}
@@ -277,6 +278,8 @@
 {"plaintext": "canell", "synonymOf": "canel"}
 {"plaintext": "canelle", "synonymOf": "canel"}
 {"plaintext": "canett", "meanings": [{"substitution": "misspelling or transcription error for \"canell\""}]}
+{"plaintext": "capon", "meanings": [{"substitution": "male chicken", "note": "castrated so that it becomes large and fat"}]}
+{"plaintext": "capownys", "synonymOf": "capon"}
 {"plaintext": "carnel", "meanings": [{"substitution": "transcription error for \"caruel\" - brains"}]}
 {"plaintext": "carnoun", "meanings": [{"substitution": "transcription error for \"carvoun\"", "note": "(carved)"}]}
 {"plaintext": "caste", "meanings": [{"substitution": "add"}]}
@@ -298,6 +301,7 @@
 {"plaintext": "chargeaunt", "merged": true, "meanings": [{"substitution": "thick"}], "synonymOf": "chargeant"}
 {"plaintext": "chargeour", "merged": true, "meanings": [{"substitution": "charger"}, {"substitution": "large dish"}, {"substitution": "a large plate"}]}
 {"plaintext": "chargere", "synonymOf": "chargeour"}
+{"plaintext": "chargeur", "synonymOf": "chargeour"}
 {"plaintext": "charghaunt", "synonymOf": "chargeant"}
 {"plaintext": "chariaud", "synonymOf": "chargeant"}
 {"plaintext": "chariaunt", "synonymOf": "chargeant"}
@@ -397,7 +401,7 @@
 {"plaintext": "crodde", "meanings": [{"substitution": "curdle"}, {"substitution": "curd"}]}
 {"plaintext": "croddis", "meanings": [{"substitution": "curds"}]}
 {"plaintext": "croddys", "synonymOf": "croddis"}
-{"plaintext": "crome", "meanings": [{"substitution": "crumbs"}]}
+{"plaintext": "crome", "meanings": [{"substitution": "crumbs"}, {"substitution": "crumble"}]}
 {"plaintext": "cromes", "synonymOf": "crome"}
 {"plaintext": "cromyd", "meanings": [{"substitution": "crumbled"}]}
 {"plaintext": "cromys", "synonymOf": "crome"}
@@ -532,6 +536,7 @@
 {"plaintext": "erthe", "meanings": [{"substitution": "earth or earthenware"}]}
 {"plaintext": "erthen", "meanings": [{"substitution": "earthenware"}]}
 {"plaintext": "ery", "meanings": [{"substitution": "ear", "note": "ears"}]}
+{"plaintext": "eryen", "synonymOf": "egges"}
 {"plaintext": "erys", "synonymOf": "ery"}
 {"plaintext": "erþen", "synonymOf": "erthen"}
 {"plaintext": "erþyn", "synonymOf": "erthen"}
@@ -612,6 +617,7 @@
 {"plaintext": "founde", "synonymOf": "fondew"}
 {"plaintext": "foyle", "merged": true, "meanings": [{"substitution": "very thin sheet"}, {"substitution": "foil"}, {"substitution": "leaf", "note": "as in \"gold leaf\""}], "synonymOf": "foile"}
 {"plaintext": "fraied", "meanings": [{"substitution": "fried"}, {"substitution": "rendered"}]}
+{"plaintext": "fressh", "synonymOf": "faire"}
 {"plaintext": "fro", "meanings": [{"substitution": "from"}]}
 {"plaintext": "frutours", "meanings": [{"substitution": "fritter", "note": "A fried cake"}]}
 {"plaintext": "frye", "meanings": [{"substitution": "fry"}]}
@@ -679,6 +685,7 @@
 {"plaintext": "guttys", "meanings": [{"substitution": "intestines"}]}
 {"plaintext": "gylofre", "synonymOf": "gelofre"}
 {"plaintext": "gyngeuer", "meanings": [{"substitution": "ginger"}]}
+{"plaintext": "gyngeuere", "synonymOf": "gyngeuer"}
 {"plaintext": "gynguer", "synonymOf": "gyngeuer"}
 {"plaintext": "gysers", "merged": true, "meanings": [{"substitution": "gizzards"}, {"substitution": "gizzards"}]}
 {"plaintext": "gysowrys", "merged": true, "synonymOf": "gysers"}
@@ -770,6 +777,7 @@
 {"plaintext": "kernelis", "meanings": [{"substitution": "kernels", "note": "seeds"}]}
 {"plaintext": "kerue", "synonymOf": "kerf"}
 {"plaintext": "kerve", "meanings": [{"substitution": "in a morter", "note": "to bray"}]}
+{"plaintext": "kest", "synonymOf": "kaste"}
 {"plaintext": "ket", "meanings": [{"substitution": "cut"}]}
 {"plaintext": "keuere", "synonymOf": "ceuere"}
 {"plaintext": "keure", "synonymOf": "ceuere"}
@@ -1361,6 +1369,7 @@
 {"plaintext": "to-broke", "meanings": [{"substitution": "broken"}]}
 {"plaintext": "to-choppe", "meanings": [{"substitution": "chop together"}]}
 {"plaintext": "to-choppyd", "meanings": [{"substitution": "chopped together"}]}
+{"plaintext": "to-gedrys", "synonymOf": "y-fere"}
 {"plaintext": "to-falle", "meanings": [{"substitution": "disintegrate"}, {"substitution": "fall together"}]}
 {"plaintext": "tobrest", "synonymOf": "berst"}
 {"plaintext": "toenst", "meanings": [{"substitution": "against"}]}
@@ -1396,6 +1405,7 @@
 {"plaintext": "veriows", "synonymOf": "vergeous"}
 {"plaintext": "vernage", "merged": true, "meanings": [{"substitution": "a strong kind of wine"}, {"substitution": "a sweet", "note": "Italian wine"}]}
 {"plaintext": "vert", "meanings": [{"substitution": "green"}]}
+{"plaintext": "vertious", "synonymOf": "various"}
 {"plaintext": "veruayn", "meanings": [{"substitution": "vervain", "note": "(Verbena officinalis)"}]}
 {"plaintext": "veselle", "meanings": [{"substitution": "vessel"}]}
 {"plaintext": "viaundes", "merged": true, "meanings": [{"substitution": "meats"}, {"substitution": "meat", "note": "(from French)"}]}
@@ -1490,6 +1500,7 @@
 {"plaintext": "y-kremyd", "meanings": [{"substitution": "crimmed", "note": "crumbled"}]}
 {"plaintext": "y-kyt", "synonymOf": "ket"}
 {"plaintext": "y-liche moche", "meanings": [{"substitution": "a like much", "note": "or quantity"}]}
+{"plaintext": "y-nogh", "synonymOf": "y-now"}
 {"plaintext": "y-now", "meanings": [{"substitution": "enough"}, {"substitution": "done"}, {"substitution": "suitable"}]}
 {"plaintext": "y-parede", "meanings": [{"substitution": "pared"}]}
 {"plaintext": "y-peyntid", "meanings": [{"substitution": "painted"}]}
