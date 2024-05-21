@@ -93,6 +93,7 @@ function App() {
         </Box>
         <p>The glossary used by this website was built on one taken from <a href="http://www.godecookery.com/glossary/glossary.htm">Gode Cookery</a>, originally compiled by James L. Matterer from the following sources:</p>
         {bibliography.map((citation, i) => <p key={i} className='citation'><i>{citation.title}</i>. {citation.author}, {citation.year}.</p>)}
+        <p>As of 21/05/2024, the contents of <a href="https://medievalcookery.com/dictionary/">Medieval Cookery&apos;s Dictionary of Middle-English Cooking Terms</a> have also been added to the glossary used by this website.</p>
       </div>
       <footer>
         <p>Website by <a href="https://github.com/gjcox">Gabriel Cox</a>.</p>
