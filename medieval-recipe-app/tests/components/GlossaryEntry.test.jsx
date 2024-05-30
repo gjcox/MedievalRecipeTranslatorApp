@@ -1,7 +1,8 @@
 import { fireEvent, screen, render } from '@testing-library/react';
 import { assert, describe, expect, it, vi } from 'vitest';
 
-import GlossaryEntry, { PLACEHOLDER_TEXT } from '../../src/components/GlossaryEntry';
+import { EMPTY_GLOSSARY_ENTRY } from '../../src/constants';
+import GlossaryEntry from '../../src/components/GlossaryEntry';
 
 const onClick = vi.fn();
 
@@ -13,7 +14,7 @@ describe('GlossaryEntry', () => {
             setSubstitution={onClick}
         />);
 
-        screen.getByText(PLACEHOLDER_TEXT);
+        screen.getByText(EMPTY_GLOSSARY_ENTRY);
     });
     it('should not have placeholder text if there are substitutions', () => {
         render(<GlossaryEntry
@@ -22,7 +23,7 @@ describe('GlossaryEntry', () => {
             setSubstitution={onClick}
         />);
 
-        const placeholder = screen.queryByText(PLACEHOLDER_TEXT);
+        const placeholder = screen.queryByText(EMPTY_GLOSSARY_ENTRY);
         assert.isNull(placeholder, "there should not be placeholder text");
     });
     it('should call "setSubstitution" when a substitution is clicked', () => {
