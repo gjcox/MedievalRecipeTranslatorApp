@@ -39,23 +39,26 @@ function translationListToString(translationArray) {
     return capitalizeSentences(translation);
 }
 
-class Translator {
+export default class Translator {
     #glossary;
     #maxMunchLimit;
 
     constructor() {
-        buildGlossary()
-            .then(glossary => {
-                this.#glossary = glossary;
-                this.#maxMunchLimit = glossary.maxMunchLimit;
-                console.log("Glossary built");
-            })
-            .catch(error => {
-                this.#glossary = {};
-                this.#maxMunchLimit = 1;
-                console.error(error);
-                console.error("Glossary could not be built");
-            });
+        this.#glossary = {};
+        this.#maxMunchLimit = 1;
+        this.initializeGlossary();
+    }
+
+    async initializeGlossary() {
+        try {
+            const glossary = await buildGlossary();
+            this.#glossary = glossary;
+            this.#maxMunchLimit = glossary.maxMunchLimit;
+            console.log("Glossary built");
+        } catch (error) {
+            console.error(error);
+            console.error("Glossary could not be built");
+        }
     }
 
     translateText(text) {
@@ -121,4 +124,3 @@ class Translator {
 
 }
 
-export default new Translator(); 
