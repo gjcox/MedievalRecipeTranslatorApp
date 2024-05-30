@@ -1,13 +1,15 @@
 import Textarea from '@mui/joy/Textarea';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 
 import './App.css';
-import Translation from './translation/Translation.jsx';
+import Translation from './components/Translation.jsx';
 import Translator from './translation/Translator.js';
 
 function App() {
+  const TRANSLATOR = useMemo(() => new Translator(), []);
+
   // Source is the input text to be translated
   const [sourceText, setSourceText] = useState('');
   const [translation, setTranslation] = useState('');
@@ -37,7 +39,7 @@ function App() {
   /* End of code to help a div masquerade as a text area */
 
   const handleTranslate = useCallback(async () => {
-    const translationArray = Translator.translateTextToArray(sourceText);
+    const translationArray = TRANSLATOR.translateTextToArray(sourceText);
     setTranslation(
       <Translation
         now={Date.now()}
@@ -45,7 +47,7 @@ function App() {
         setGlossaryEntry={setGlossaryEntry}
       />
     );
-  }, [sourceText]);
+  }, [TRANSLATOR, sourceText]);
 
   useEffect(() => {
     handleTranslate()
@@ -65,7 +67,7 @@ function App() {
         <p>
           This website offers a simple, word-for-word translation of medieval English recipes into more modern English.
           It is by no means perfect, and is intended to help budding enthusiasts get familiar with some of the common yet esoteric terms that appear in period manuscripts.
-          For archaic words that are not translated, it is sometimes possible to correctly guess the meaning by simply treating the word as a mispelling, e.g. &quot;whyte&quot; becomes &quot;white&quot;. 
+          For archaic words that are not translated, it is sometimes possible to correctly guess the meaning by simply treating the word as a mispelling, e.g. &quot;whyte&quot; becomes &quot;white&quot;.
           Also note that reading the thorn character (Þ, þ) as &quot;th&quot; can often make a word understandable, e.g. &quot;þe&quot; becomes &quot;the&quot;.
         </p>
         <p>Translated recipes will still require significant interpretation in most cases. For more beginner-friendly recipes online, I suggest websites like <a href="http://www.godecookery.com/">Gode Cookery</a> and <a href="https://medievalcookery.com/index.html">Medieval Cookery</a>.</p>

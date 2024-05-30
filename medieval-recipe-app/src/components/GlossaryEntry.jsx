@@ -1,6 +1,8 @@
 import { Grid } from '@mui/material';
 import PropTypes from 'prop-types';
 
+import { EMPTY_GLOSSARY_ENTRY } from '../constants';
+
 export default function GlossaryEntry({ word, meanings, setSubstitution }) {
     GlossaryEntry.propTypes = {
         word: PropTypes.string,
@@ -26,7 +28,7 @@ export default function GlossaryEntry({ word, meanings, setSubstitution }) {
 
         </Grid >));
 
-    const noMeanings = <Grid item xs={12}><i>empty glossary entry - no known meanings</i></Grid>;
+    const noMeanings = <Grid item xs={12}><i>{EMPTY_GLOSSARY_ENTRY}</i></Grid>;
 
     return (
         <Grid

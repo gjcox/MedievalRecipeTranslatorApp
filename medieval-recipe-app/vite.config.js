@@ -6,4 +6,9 @@ export default defineConfig({
   plugins: [react()],
   base: "https://gjcox.github.io/MedievalRecipeTranslatorApp/",
   assetsInclude: ['**/*.jsonl'],
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './tests/setup.js',
+  },
 })
