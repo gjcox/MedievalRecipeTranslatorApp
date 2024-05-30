@@ -1,4 +1,4 @@
-import { buildGlossary } from "./BuildGlossary";
+import buildGlossary from "./buildGlossary";
 
 // the default \w and \b only work for the Latin alphabet, so I have created my own equivalents
 const wordChars = "\\wþÞ-";

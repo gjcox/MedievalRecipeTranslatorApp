@@ -1,10 +1,10 @@
 import { assert, describe, it, vi } from 'vitest';
 
-import { buildGlossary } from '../../src/translation/BuildGlossary';
+import buildGlossary from '../../src/translation/buildGlossary';
 import Translator from "../../src/translation/Translator";
 
-vi.mock('../../src/translation/BuildGlossary', () => ({
-    buildGlossary: vi.fn(),
+vi.mock('../../src/translation/buildGlossary', () => ({
+    default: vi.fn(),
 }));
 
 const MOCK_GLOSSARY = {

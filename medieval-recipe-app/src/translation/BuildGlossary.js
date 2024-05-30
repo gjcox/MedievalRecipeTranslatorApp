@@ -1,6 +1,6 @@
-import  fetchGlossary from "./FetchGlossary";
+import  fetchGlossary from "./fetchGlossary";
 
-export async function buildGlossary() {
+export default async function buildGlossary() {
     try {
         const text = await fetchGlossary();
         const glossary = { maxMunchLimit: 0 };

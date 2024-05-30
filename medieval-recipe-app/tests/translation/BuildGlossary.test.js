@@ -1,10 +1,10 @@
 import { describe, it, expect, vi } from 'vitest';
 
-import { buildGlossary } from '../../src/translation/BuildGlossary';
-import fetchGlossary from '../../src/translation/FetchGlossary';
+import buildGlossary from '../../src/translation/buildGlossary';
+import fetchGlossary from '../../src/translation/fetchGlossary';
 
 // Mock the fetchGlossary function
-vi.mock('../../src/translation/FetchGlossary', () => ({
+vi.mock('../../src/translation/fetchGlossary', () => ({
     default: vi.fn(),
 }));
 
