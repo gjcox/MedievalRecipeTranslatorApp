@@ -1,58 +1,4 @@
-function buildGlossary() {
-    const URL = (import.meta.env.BASE_URL + 'glossary.jsonl')
-    return new Promise((resolve, reject) => {
-
-
-        fetch(URL)
-            .then(response => response.text())
-            .then(text => {
-                const glossary = { maxMunchLimit: 0 };
-
-                // Add entry to glossary, merging entries in the case of a duplicate plaintext
-                function addEntry(plaintext, meanings) {
-                    glossary[plaintext] = (glossary[plaintext] ?? []).concat(meanings ?? []);
-                }
-
-                // Split the glossary file into lines
-                const lines = text.trim().split('\n');
-
-                const awaitingSynonyms = [];
-
-                // Parse each line as JSON and add an entry to the glossary
-                const entries = lines.map(line => JSON.parse(line));
-                for (let entry of entries) {
-                    // Track the longest phrase length in the glossary, to be used in translation 
-                    const nPlaintextWords = entry.plaintext.split(" ").length;
-                    if (nPlaintextWords > glossary.maxMunchLimit) {
-                        glossary.maxMunchLimit = nPlaintextWords;
-                    }
-
-                    // Track synonyms to be updated later 
-                    if (Object.prototype.hasOwnProperty.call(entry, 'synonymOf')) {
-                        awaitingSynonyms.push(entry);
-                    }
-
-                    addEntry(entry.plaintext, entry.meanings);
-                }
-
-                // Add missing meanings for synonym entries 
-                for (let synonymEntry of awaitingSynonyms) {
-                    if (!glossary[synonymEntry.plaintext]) {
-                        console.warn(`${synonymEntry.plaintext} expected to be a synonym of ${synonymEntry.synonymOf}, but that is not in the glossary.`)
-                    } else {
-                        addEntry(synonymEntry.plaintext, glossary[synonymEntry.synonymOf]);
-                    }
-                }
-
-                resolve(glossary);
-            })
-            .catch(error => {
-                const msg = 'Error reading JSONL file: ' + error;
-                console.error(msg);
-                reject({});
-            });
-    });
-}
+import { buildGlossary } from "./BuildGlossary";
 
 // the default \w and \b only work for the Latin alphabet, so I have created my own equivalents
 const wordChars = "\\wþÞ-";
@@ -65,8 +11,7 @@ const word = `${wordBoundary}[${wordChars}]+${wordBoundary}`;
 
 // This function was adapted from https://www.geeksforgeeks.org/javascript-program-to-capitalize-the-first-letter-of-every-sentence-in-a-string/. Accessed 04/04/2024.
 function capitalizeSentences(text) {
-    // Split the text into sentences  
-    // using regular expressions 
+    // Split the text into sentences using regular expressions 
     const sentences = text.split(/\.|\?|!/);
 
     // Capitalize the first letter of each sentence 
@@ -96,7 +41,7 @@ function translationListToString(translationArray) {
 
 class Translator {
     #glossary;
-    #maxMunchLimit
+    #maxMunchLimit;
 
     constructor() {
         buildGlossary()
@@ -105,11 +50,11 @@ class Translator {
                 this.#maxMunchLimit = glossary.maxMunchLimit;
                 console.log("Glossary built");
             })
-            .catch(() => {
-                const msg = `Glossary could not be built`;
-                console.error(msg);
-                this.#glossary = {}; 
-                this.#maxMunchLimit = 1; 
+            .catch(error => {
+                this.#glossary = {};
+                this.#maxMunchLimit = 1;
+                console.error(error);
+                console.error("Glossary could not be built");
             });
     }
 
@@ -117,6 +62,12 @@ class Translator {
         return translationListToString(this.translateTextToArray(text));
     }
 
+    /**
+     * Performs glossary-based translation. 
+     * @param {str} text a string to be translated. 
+     * @returns If there are no substitutions to make, output will not change.
+                If there are, then it will be a mixed array of strings and {word, meanings} objects.
+     */
     translateTextToArray(text) {
         /* If there are no substitutions to make, output will not change.
          * If there are, then it will be a mixed array of strings and 
@@ -167,9 +118,6 @@ class Translator {
         }
         return output;
     }
-
-
-
 
 }
 
