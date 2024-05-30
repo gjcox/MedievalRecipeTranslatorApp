@@ -1,8 +1,7 @@
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
 import App from "../src/App.jsx";
-// import GlossaryEntry from '../src/translation/GlossaryEntry.jsx';
 
 describe('App', () => {
     it('renders', () => {
@@ -11,7 +10,9 @@ describe('App', () => {
 
         render(<App/>);
 
-        screen.debug();
+        // This can be useful for debugging, but I have not yet
+        // implemented automated integration tests
+        // screen.debug();
 
     });
 });
