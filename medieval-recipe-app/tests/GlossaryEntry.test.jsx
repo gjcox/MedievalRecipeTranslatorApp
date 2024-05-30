@@ -1,7 +1,7 @@
 import { fireEvent, screen, render } from '@testing-library/react';
 import { assert, describe, expect, it, vi } from 'vitest';
 
-import GlossaryEntry, { PLACEHOLDER_TEXT } from '../src/translation/GlossaryEntry';
+import GlossaryEntry, { PLACEHOLDER_TEXT } from '../src/components/GlossaryEntry';
 
 const onClick = vi.fn();
 

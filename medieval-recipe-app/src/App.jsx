@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 
 import './App.css';
-import Translation from './translation/Translation.jsx';
+import Translation from './components/Translation.jsx';
 import Translator from './translation/Translator.js';
 
 function App() {
