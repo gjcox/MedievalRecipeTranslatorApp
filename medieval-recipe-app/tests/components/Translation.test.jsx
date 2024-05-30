@@ -2,23 +2,9 @@ import { render, screen } from '@testing-library/react';
 import { describe, it, vi, expect } from 'vitest';
 
 import Translation from '../../src/components/Translation';
+import { getByTextContent } from '../testHelpers';
 
 const onClick = vi.fn();
-
-/**
- * Finds an element based on its text content, allowing for the text to be
- * broken up by multiple elements. 
- * @param {str} text the string to match against.
- * @returns an HTMLElement
- */
-const getByTextContent = (text) => {
-    return screen.getByText((_, element) => {
-        const hasText = element => element.textContent === text;
-        const elementHasText = hasText(element);
-        const childrenDontHaveText = Array.from(element?.children || []).every(child => !hasText(child));
-        return elementHasText && childrenDontHaveText;
-    });
-}
 
 describe('Translation', () => {
     it('should handle an empty translation array gracefully', () => {
